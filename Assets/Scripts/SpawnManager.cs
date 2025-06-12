@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public ObjectPool notePool;
+    public ObjectPool effectPool;
+    public Transform spawnPoint;
+    public float spawnInterval = 2f;
+    public float noteSpeed = 5f;
+
+    private void Start()
     {
-        
+        InvokeRepeating(nameof(SpawnNote), 2f, spawnInterval);
     }
 
-    // Update is called once per frame
-    void Update()
+    void SpawnNote()
     {
-        
+        GameObject note = notePool.GetFromPool();
+        note.transform.position = spawnPoint.position;
+        note.transform.rotation = Quaternion.identity;
+
+        Rigidbody rb = note.GetComponent<Rigidbody>();
+        rb.velocity = Vector3.forward * noteSpeed;
+
+        // Pool 정보 넘기기
+        note.GetComponent<Note>().SetPool(notePool, effectPool);
     }
 }

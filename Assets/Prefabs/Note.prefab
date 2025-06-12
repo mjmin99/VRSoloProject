@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2497743284678979558}
   - component: {fileID: 3833530817481825793}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Note
   m_TagString: Note
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -168,3 +168,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c803b6645b045439c4930e1b7ef1ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyEffect: {fileID: 1545447954663848003, guid: ea74ab522e333b84abc62f59edce85fe, type: 3}
