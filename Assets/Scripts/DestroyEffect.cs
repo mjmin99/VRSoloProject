@@ -22,7 +22,7 @@ public class DestroyEffect : MonoBehaviour
     {
         if (!ps.isPlaying)
         {
-            pool.ReturnToPool(gameObject);
+            pool.ReturnObject(gameObject);
         }
     }
 }

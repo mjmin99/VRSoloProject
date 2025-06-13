@@ -5,25 +5,18 @@ using UnityEngine;
 public class Note : MonoBehaviour
 {
     private ObjectPool pool;
-    private ObjectPool effectPool;
+    public float lifeTime = 5f;
 
-    public void SetPool(ObjectPool notePool, ObjectPool destroyEffectPool)
+    public void Init(ObjectPool poolRef)
     {
-        pool = notePool;
-        effectPool = destroyEffectPool;
+        pool = poolRef;
+        StopAllCoroutines();
+        StartCoroutine(ReturnToPoolAfterTime());
     }
 
-    private void OnTriggerEnter(Collider other)
+    private IEnumerator ReturnToPoolAfterTime()
     {
-        if (other.CompareTag("HandCollider")) // 주먹 콜라이더 Tag = "HandCollider"
-        {
-            // 이펙트 생성
-            GameObject effect = effectPool.GetFromPool();
-            effect.transform.position = transform.position;
-            effect.GetComponent<DestroyEffect>().SetPool(effectPool);
-
-            // 자신 풀로 복귀
-            pool.ReturnToPool(gameObject);
-        }
+        yield return new WaitForSeconds(lifeTime);
+        pool.ReturnObject(gameObject);
     }
 }

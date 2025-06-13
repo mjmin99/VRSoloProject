@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    [SerializeField] private GameObject prefab;
-    [SerializeField] private int poolSize = 10;
+    public GameObject prefab;
+    public int poolSize = 20;
 
-    private Queue<GameObject> poolQueue = new Queue<GameObject>();
+    private Queue<GameObject> pool = new Queue<GameObject>();
 
     private void Start()
     {
@@ -15,28 +15,29 @@ public class ObjectPool : MonoBehaviour
         {
             GameObject obj = Instantiate(prefab);
             obj.SetActive(false);
-            poolQueue.Enqueue(obj);
+            pool.Enqueue(obj);
         }
     }
 
-    public GameObject GetFromPool()
+    public GameObject GetObject()
     {
-        if (poolQueue.Count > 0)
+        if (pool.Count > 0)
         {
-            GameObject obj = poolQueue.Dequeue();
+            GameObject obj = pool.Dequeue();
             obj.SetActive(true);
             return obj;
         }
         else
         {
+            // 풀 부족 시 확장 (선택)
             GameObject obj = Instantiate(prefab);
             return obj;
         }
     }
 
-    public void ReturnToPool(GameObject obj)
+    public void ReturnObject(GameObject obj)
     {
         obj.SetActive(false);
-        poolQueue.Enqueue(obj);
+        pool.Enqueue(obj);
     }
 }
