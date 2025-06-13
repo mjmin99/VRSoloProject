@@ -9,7 +9,7 @@ public class NoteSpawner : MonoBehaviour
     public string csvFileName;
     public float[] lanePositionsX;
     public float spawnZ = 20f;
-    public float spawnY = 1.6f;
+    public float spawnY = 0;
     public AudioSource musicSource;
 
     private List<NoteData> allNotes;
@@ -17,14 +17,20 @@ public class NoteSpawner : MonoBehaviour
 
     void Start()
     {
-        // CSV 파일 파싱
+        // CSV 파싱
         allNotes = CSVReader.Parse(csvFileName);
-        // 혹시 모를 순서 오류를 방지하기 위해 시간 순으로 정렬
         allNotes.Sort((a, b) => a.spawnTime.CompareTo(b.spawnTime));
+
+        // 음악 재생
+        musicSource.Play();
     }
 
     void Update()
     {
+        if (allNotes != null && allNotes.Count > nextNoteIndex)
+        {
+            Debug.Log("Music Time: " + musicSource.time + " / Next Note Time: " + allNotes[nextNoteIndex].spawnTime);
+        }
         // 다음 생성할 노트가 있고, 음악 재생 시간이 노트 생성 시간 이상이라면
         if (nextNoteIndex < allNotes.Count && musicSource.time >= allNotes[nextNoteIndex].spawnTime)
         {
@@ -67,6 +73,10 @@ public class CSVReader
         {
             Debug.LogError("CSV file not found in Resources folder: " + csvFileName);
             return noteDataList;
+        }
+        else
+        {
+            Debug.Log("CSV file loaded successfully:\n" + csvData.text);
         }
 
         // 줄 단위로 텍스트를 분리
