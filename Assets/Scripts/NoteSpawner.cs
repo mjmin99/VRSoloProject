@@ -48,17 +48,6 @@ public class NoteSpawner : MonoBehaviour
 }
 
 
-public struct NoteData
-{
-    public float spawnTime;
-    public int laneIndex;
-
-    public NoteData(float time, int lane)
-    { 
-        spawnTime = time;
-        laneIndex = lane;
-    }
-}
 
 public class CSVReader
 {
