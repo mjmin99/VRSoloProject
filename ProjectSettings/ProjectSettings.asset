@@ -8,7 +8,7 @@ PlayerSettings:
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
-  defaultScreenOrientation: 4
+  defaultScreenOrientation: 3
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
@@ -142,7 +142,12 @@ PlayerSettings:
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
   bundleVersion: 0.1
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: 11400000, guid: dceaa4a655caa9e4591a7d4fb43ad594, type: 2}
+  - {fileID: 3475083164633389694, guid: 11f4a09067a83cf4f817ce378ac968bc, type: 2}
+  - {fileID: 11400000, guid: 9b33d34901f7d904fb10855950fb66b3, type: 2}
+  - {fileID: 11400000, guid: ed05356e8f3a6cf40ae1eec18bfe880a, type: 2}
+  - {fileID: -7357885597645592641, guid: 67ce3edcd41c6bc428ef1266ce3a39c0, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
